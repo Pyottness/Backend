@@ -22,7 +22,7 @@ exports.createHouse = (req, res, next) => {
   );
 };
 
-exports.getOneHouse = (res, res, next) => {
+exports.getOneHouse = (req, res, next) => {
   House.findOne({
     _id: req.params.id
   }).then(
