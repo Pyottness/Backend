@@ -3,6 +3,7 @@ const express = require('express');
 
 const app = express();
 app.use(express.json());
+const mongoose = require('mongoose');
 const houseRoutes = require('./routes/houses');
 app.use('/api/houses', houseRoutes);
 const userRoutes = require('./routes/user');
