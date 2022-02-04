@@ -4,8 +4,10 @@
   "description": "Nodejs Backend",
   "main": "server.js",
   "scripts": {
+    "postinstall": "netlify-lambda install",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "netlify-lambda serve src",
+    "build": "netlify-lambda build src"
   },
   "author": "Mark J Pyott",
   "license": "ISC",
@@ -15,6 +17,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.8",
     "mongoose-unique-validator": "^3.0.0",
+    "netlify-lambda": "^2.0.15",
     "serverless-http": "^2.7.0"
   }
 }

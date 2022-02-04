@@ -1,8 +1,10 @@
 
 const express = require('express');
 const serverless = require('serverless-http');
-
 const app = express();
+const router = express.Router();
+
+
 app.use(express.json());
 const mongoose = require('mongoose');
 const houseRoutes = require('./routes/houses');
@@ -46,7 +48,7 @@ app.use('/api/houses', (req, res, next) => {
 
 //pokemon Gen1
 
-app.get('/api/gen1', (req, res, next) => {
+router.get('/api/gen1', (req, res, next) => {
   const gen1 = [
    {name: 'bulbasaur', url: 'https://pokeapi.co/api/v2/pokemon/1/'},
    {name: 'ivysaur', url: 'https://pokeapi.co/api/v2/pokemon/2/'},
@@ -205,7 +207,7 @@ app.get('/api/gen1', (req, res, next) => {
 
 //pokemon Gen2
 
-app.get('/api/gen2', (req, res, next) => {
+router.get('/api/gen2', (req, res, next) => {
   const gen2 = [
    {name: 'chikorita', url: 'https://pokeapi.co/api/v2/pokemon/152/'},
    {name: 'bayleef', url: 'https://pokeapi.co/api/v2/pokemon/153/'},
@@ -313,7 +315,7 @@ app.get('/api/gen2', (req, res, next) => {
 
 //pokemon Gen3
 
-app.get('/api/gen3', (req, res, next) => {
+router.get('/api/gen3', (req, res, next) => {
   const gen3 = [
    {name: 'treecko', url: 'https://pokeapi.co/api/v2/pokemon/252/'},
    {name: 'grovyle', url: 'https://pokeapi.co/api/v2/pokemon/253/'},
@@ -456,7 +458,7 @@ app.get('/api/gen3', (req, res, next) => {
 
 //pokemon Gen4
 
-app.get('/api/gen4', (req, res, next) => {
+router.get('/api/gen4', (req, res, next) => {
   const gen4 = [
    {name: 'turtwig', url: 'https://pokeapi.co/api/v2/pokemon/387/'},
    {name: 'grotle', url: 'https://pokeapi.co/api/v2/pokemon/388/'},
@@ -571,7 +573,7 @@ app.get('/api/gen4', (req, res, next) => {
 
 //pokemon Gen5
 
-app.get('/api/gen5', (req, res, next) => {
+router.get('/api/gen5', (req, res, next) => {
   const gen5 = [
    {name: 'victini', url: 'https://pokeapi.co/api/v2/pokemon/494/'},
    {name: 'snivy', url: 'https://pokeapi.co/api/v2/pokemon/495/'},
@@ -735,7 +737,7 @@ app.get('/api/gen5', (req, res, next) => {
 
 //pokemon Gen6
 
-app.get('/api/gen6', (req, res, next) => {
+router.get('/api/gen6', (req, res, next) => {
   const gen6 = [
    {name: 'chespin', url: 'https://pokeapi.co/api/v2/pokemon/650/'},
    {name: 'quilladin', url: 'https://pokeapi.co/api/v2/pokemon/651/'},
@@ -815,7 +817,7 @@ app.get('/api/gen6', (req, res, next) => {
 
 //pokemon Gen7
 
-app.get('/api/gen7', (req, res, next) => {
+router.get('/api/gen7', (req, res, next) => {
   const gen7 = [
    {name: 'rowlet', url: 'https://pokeapi.co/api/v2/pokemon/722/'},
    {name: 'dartrix', url: 'https://pokeapi.co/api/v2/pokemon/723/'},
@@ -925,5 +927,6 @@ app.use((req, res, next) => {
   console.log('Response sent successfully!');
 });
 
-module.exports = app;
+app.use('/.netlify/functions/app', router);
+
 module.exports.handler = serverless(app);
